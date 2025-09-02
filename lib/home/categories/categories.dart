@@ -4,6 +4,8 @@ import 'package:news_app/utils/app_colors.dart';
 
 class Categories extends StatelessWidget {
   List<CategoryModel> catogeries = CategoryModel.getCategories();
+  Function onViewAllTap;
+  Categories({required this.onViewAllTap});
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -41,37 +43,44 @@ class Categories extends StatelessWidget {
                           catogeries[index].imagePath,
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: width * 0.03, vertical: height * 0.02),
-                        height: height * 0.05,
-                        width: width * 0.4,
-                        decoration: BoxDecoration(
-                            color: AppColors.grey,
-                            borderRadius: BorderRadius.circular(24)),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: width * 0.02,
-                            ),
-                            Text(
-                              "View All",
-                              style: Theme.of(context).textTheme.headlineMedium,
-                            ),
-                            Spacer(),
-                            Container(
-                              width: width * 0.12,
-                              height: height * 0.05,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(22),
-                                color: Theme.of(context).primaryColor,
+                      InkWell(
+                        onTap: () {
+                          onViewAllTap(catogeries[index]);
+                        },
+                        child: Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: width * 0.03,
+                              vertical: height * 0.02),
+                          height: height * 0.05,
+                          width: width * 0.4,
+                          decoration: BoxDecoration(
+                              color: AppColors.grey,
+                              borderRadius: BorderRadius.circular(24)),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: width * 0.02,
                               ),
-                              child: Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                color: Theme.of(context).indicatorColor,
+                              Text(
+                                "View All",
+                                style:
+                                    Theme.of(context).textTheme.headlineMedium,
                               ),
-                            ),
-                          ],
+                              Spacer(),
+                              Container(
+                                width: width * 0.12,
+                                height: height * 0.05,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(22),
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                                child: Icon(
+                                  Icons.arrow_forward_ios_outlined,
+                                  color: Theme.of(context).indicatorColor,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

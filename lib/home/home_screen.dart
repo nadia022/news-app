@@ -1,22 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/home/categories/categories.dart';
 import 'package:news_app/home/category_details/category_details.dart';
+import 'package:news_app/home/drawer/drawer_widget.dart';
+import 'package:news_app/model/category_model.dart';
 import 'package:news_app/utils/app_colors.dart';
-import 'package:news_app/utils/app_styles.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const String routeName = 'homeScreen';
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "News App",
+          selectedCategory == null ? "Home" : selectedCategory!.catogryName,
         ),
         centerTitle: true,
       ),
+      drawer: Drawer(
+          backgroundColor: AppColors.black,
+          child: DrawerWidget(
+            goToHomeClicked: goToHomeClicked,
+          )),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: Categories(),
+      body: selectedCategory == null
+          ? Categories(
+              onViewAllTap: getCategoryDetails,
+            )
+          : CategoryDetails(
+              category: selectedCategory!,
+            ),
     );
+  }
+
+  CategoryModel? selectedCategory;
+
+  void getCategoryDetails(CategoryModel newSelectedCategory) {
+    selectedCategory = newSelectedCategory;
+    setState(() {});
+  }
+
+  void goToHomeClicked() {
+    selectedCategory = null;
+    Navigator.pop(context);
+    setState(() {});
   }
 }

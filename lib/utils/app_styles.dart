@@ -4,6 +4,8 @@ import 'package:news_app/utils/app_colors.dart';
 class AppStyles {
   static TextStyle bold16White = TextStyle(
       fontSize: 16, color: AppColors.white, fontWeight: FontWeight.bold);
+  static TextStyle bold20White = TextStyle(
+      fontSize: 20, color: AppColors.white, fontWeight: FontWeight.bold);
   static TextStyle medium14White = TextStyle(
       fontSize: 14, color: AppColors.white, fontWeight: FontWeight.w500);
   static TextStyle bold16Black = TextStyle(

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/home/category_details/source_tab_widget.dart';
+import 'package:news_app/model/category_model.dart';
 
 class CategoryDetails extends StatefulWidget {
-  static const String routeName = 'catogryDetails';
+  CategoryModel category;
+  CategoryDetails({required this.category});
 
   @override
   State<CategoryDetails> createState() => _CategoryDetailsState();
@@ -13,7 +15,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: ApiManager.getSources(),
+        future: ApiManager.getSources(widget.category.id),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -27,7 +29,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   Text("Something went wrong"),
                   ElevatedButton(
                       onPressed: () {
-                        ApiManager.getSources();
+                        ApiManager.getSources(widget.category.id);
                         setState(() {});
                       },
                       child: Text("Try Again"))
@@ -43,7 +45,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   Text(snapshot.data!.message!),
                   ElevatedButton(
                     onPressed: () {
-                      ApiManager.getSources();
+                      ApiManager.getSources(widget.category.id);
                       setState(() {});
                     },
                     child: Text("Try Again"),

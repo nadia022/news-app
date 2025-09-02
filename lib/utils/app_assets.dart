@@ -9,4 +9,7 @@ class AppAssets {
   static const String sportsImageDark = "assets/images/sports_image_dark.png";
   static const String technologyImageDark =
       "assets/images/technology_image_dark.png";
+  static const String homeIcon = "assets/icons/home_icon.png";
+  static const String localIcon = "assets/icons/local_icon.png";
+  static const String themeIcon = "assets/icons/theme_icon.png";
 }
