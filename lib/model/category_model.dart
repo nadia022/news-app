@@ -11,31 +11,31 @@ class CategoryModel {
     return [
       CategoryModel(
           id: "general",
-          imagePath: AppAssets.generalImageDark,
+          imagePath: AppAssets.generalImageLight,
           catogryName: "General"),
       CategoryModel(
           id: "business",
-          imagePath: AppAssets.businessImageDark,
+          imagePath: AppAssets.businessImageLight,
           catogryName: "Business"),
       CategoryModel(
           id: "sports",
-          imagePath: AppAssets.sportsImageDark,
+          imagePath: AppAssets.sportsImageLight,
           catogryName: "Sports"),
       CategoryModel(
           id: "health",
-          imagePath: AppAssets.healthImageDark,
+          imagePath: AppAssets.healthImageLight,
           catogryName: "Health"),
       CategoryModel(
           id: "entertainment",
-          imagePath: AppAssets.entertainmentImageDark,
+          imagePath: AppAssets.entertainmentImageLight,
           catogryName: "Entertainment"),
       CategoryModel(
           id: "technology",
-          imagePath: AppAssets.technologyImageDark,
+          imagePath: AppAssets.technologyImageLight,
           catogryName: "Technology"),
       CategoryModel(
           id: "science",
-          imagePath: AppAssets.scienceImageDark,
+          imagePath: AppAssets.scienceImageLight,
           catogryName: "Science"),
     ];
   }

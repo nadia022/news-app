@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/home/categories/categories.dart';
 import 'package:news_app/home/category_details/category_details.dart';
 import 'package:news_app/home/drawer/drawer_widget.dart';
+import 'package:news_app/home/search/search_screen.dart';
 import 'package:news_app/model/category_model.dart';
 import 'package:news_app/utils/app_colors.dart';
 
@@ -24,6 +25,20 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedCategory == null ? "Home" : selectedCategory!.catogryName,
         ),
         centerTitle: true,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: width * 0.02),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, SearchScreen.routeName);
+              },
+              icon: Icon(
+                Icons.search_rounded,
+                size: 30,
+              ),
+            ),
+          ),
+        ],
       ),
       drawer: Drawer(
           backgroundColor: AppColors.black,

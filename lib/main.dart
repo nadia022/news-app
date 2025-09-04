@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/home/category_details/category_details.dart';
 import 'package:news_app/home/home_screen.dart';
+import 'package:news_app/home/search/search_screen.dart';
 import 'package:news_app/utils/app_theme.dart';
 
 void main() {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
-        // CategoryDetails.routeName: (context) => CategoryDetails(),
+        SearchScreen.routeName: (context) => SearchScreen(),
       },
     );
   }
