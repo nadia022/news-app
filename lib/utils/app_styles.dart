@@ -7,19 +7,19 @@ class AppStyles {
   static TextStyle bold20White = TextStyle(
       fontSize: 20, color: AppColors.white, fontWeight: FontWeight.bold);
   static TextStyle medium14White = TextStyle(
-      fontSize: 14, color: AppColors.white, fontWeight: FontWeight.w500);
+      fontSize: 14, color: AppColors.white, fontWeight: FontWeight.w600);
   static TextStyle bold16Black = TextStyle(
       fontSize: 16, color: AppColors.black, fontWeight: FontWeight.bold);
   static TextStyle medium14black = TextStyle(
-      fontSize: 14, color: AppColors.black, fontWeight: FontWeight.w500);
+      fontSize: 14, color: AppColors.black, fontWeight: FontWeight.w600);
   static TextStyle medium20White = TextStyle(
-      fontSize: 20, color: AppColors.white, fontWeight: FontWeight.w500);
+      fontSize: 20, color: AppColors.white, fontWeight: FontWeight.w600);
   static TextStyle medium24White = TextStyle(
-      fontSize: 24, color: AppColors.white, fontWeight: FontWeight.w500);
+      fontSize: 24, color: AppColors.white, fontWeight: FontWeight.w600);
   static TextStyle medium24Black = TextStyle(
-      fontSize: 24, color: AppColors.black, fontWeight: FontWeight.w500);
+      fontSize: 24, color: AppColors.black, fontWeight: FontWeight.w600);
   static TextStyle medium20Black = TextStyle(
-      fontSize: 20, color: AppColors.black, fontWeight: FontWeight.w500);
+      fontSize: 20, color: AppColors.black, fontWeight: FontWeight.w600);
   static TextStyle medium12Grey = TextStyle(
-      fontSize: 12, color: AppColors.grey, fontWeight: FontWeight.w500);
+      fontSize: 12, color: AppColors.grey, fontWeight: FontWeight.w600);
 }

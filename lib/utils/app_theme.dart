@@ -4,6 +4,7 @@ import 'package:news_app/utils/app_styles.dart';
 
 class AppTheme {
   static ThemeData darkTheme = ThemeData(
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: AppColors.white),
     indicatorColor: AppColors.white,
     primaryColor: AppColors.black,
     scaffoldBackgroundColor: AppColors.black,
@@ -15,7 +16,8 @@ class AppTheme {
     textTheme: TextTheme(
         headlineMedium: AppStyles.medium24White,
         titleMedium: AppStyles.medium14White,
-        titleLarge: AppStyles.bold16White),
+        titleLarge: AppStyles.bold16White,
+        bodyMedium: AppStyles.medium14black),
     inputDecorationTheme: InputDecorationTheme(
       prefixIconColor: AppColors.white,
       suffixIconColor: AppColors.white,
@@ -33,9 +35,17 @@ class AppTheme {
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(color: AppColors.white, width: 1)),
     ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+          textStyle: AppStyles.bold16White,
+          backgroundColor: AppColors.black,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
+    ),
   );
 
   static ThemeData lightTheme = ThemeData(
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: AppColors.black),
     indicatorColor: AppColors.black,
     primaryColor: AppColors.white,
     scaffoldBackgroundColor: AppColors.white,
@@ -45,6 +55,7 @@ class AppTheme {
       titleTextStyle: AppStyles.medium20Black,
     ),
     textTheme: TextTheme(
+        bodyMedium: AppStyles.medium14White,
         headlineMedium: AppStyles.medium24Black,
         titleMedium: AppStyles.medium14black,
         titleLarge: AppStyles.bold16Black),
@@ -64,6 +75,13 @@ class AppTheme {
       border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(color: AppColors.black, width: 1)),
+    ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+          textStyle: AppStyles.bold16Black,
+          backgroundColor: AppColors.white,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
     ),
   );
 }
