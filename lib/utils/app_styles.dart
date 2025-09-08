@@ -10,6 +10,8 @@ class AppStyles {
       fontSize: 14, color: AppColors.white, fontWeight: FontWeight.w600);
   static TextStyle bold16Black = TextStyle(
       fontSize: 16, color: AppColors.black, fontWeight: FontWeight.bold);
+  static TextStyle bold16Red =
+      TextStyle(fontSize: 16, color: Colors.red, fontWeight: FontWeight.bold);
   static TextStyle medium14black = TextStyle(
       fontSize: 14, color: AppColors.black, fontWeight: FontWeight.w600);
   static TextStyle medium20White = TextStyle(

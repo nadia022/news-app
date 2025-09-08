@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/home/news/news_item.dart';
 import 'package:news_app/model/NewsResponse.dart';
 import 'package:news_app/utils/app_colors.dart';
+import 'package:news_app/utils/app_styles.dart';
 
 class SearchScreen extends StatefulWidget {
   static const String routeName = "searchScreen";
@@ -12,9 +14,27 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  TextEditingController controller = TextEditingController();
+  TextEditingController searchController = TextEditingController();
 
   List<Articles> articles = [];
+
+  int currentPage = 1;
+
+  int maxResults = 0;
+  String? errorMessage;
+
+  ScrollController scrollController = ScrollController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        search();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +50,16 @@ class _SearchScreenState extends State<SearchScreen> {
               right: width * 0.03,
             ),
             child: TextField(
-              controller: controller,
+              style: Theme.of(context).textTheme.labelMedium,
+              onSubmitted: (value) {
+                currentPage = 1;
+                maxResults = 0;
+                search();
+              },
+              controller: searchController,
               decoration: InputDecoration(
                   hintText: "Search",
-                  prefixIcon: InkWell(
-                      onTap: () {
-                        setState(() {});
-                      },
-                      child: Icon(Icons.search)),
+                  prefixIcon: Icon(Icons.search),
                   suffixIcon: InkWell(
                       onTap: () {
                         Navigator.pop(context);
@@ -45,64 +67,57 @@ class _SearchScreenState extends State<SearchScreen> {
                       child: Icon(Icons.close))),
             ),
           ),
-          Expanded(
-            child: controller.text.isEmpty
-                ? Center(
-                    child: Icon(
-                      Icons.hourglass_empty,
-                      color: AppColors.black,
-                      size: 80,
+          if (articles.isEmpty && errorMessage == null)
+            Expanded(
+              child: Center(
+                  child: Lottie.asset("assets/animation/empty_animation.json")),
+            )
+          else if (errorMessage != null)
+            Expanded(
+              child: Center(
+                child: Text(
+                  errorMessage!,
+                  style: AppStyles.bold16Red,
+                ),
+              ),
+            )
+          else
+            Expanded(
+                child: ListView.builder(
+              controller: scrollController,
+              padding: EdgeInsets.zero,
+              itemBuilder: (context, index) {
+                if (index == articles.length) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.grey,
                     ),
-                  )
-                : FutureBuilder(
-                    future: ApiManager.searchForNews(controller.text),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(
-                            child: CircularProgressIndicator(
-                          color: AppColors.grey,
-                        ));
-                      } else if (snapshot.hasError) {
-                        return Center(
-                          child: Column(
-                            children: [
-                              Text("something went wrong."),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    ApiManager.searchForNews(controller.text);
-                                    setState(() {});
-                                  },
-                                  child: Text("try again")),
-                            ],
-                          ),
-                        );
-                      }
-                      if (snapshot.data!.status != "ok") {
-                        return Center(
-                          child: Column(
-                            children: [
-                              Text(snapshot.data!.message ?? ""),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    ApiManager.searchForNews(controller.text);
-                                    setState(() {});
-                                  },
-                                  child: Text("try again")),
-                            ],
-                          ),
-                        );
-                      }
-                      articles = snapshot.data!.articles ?? [];
-                      return ListView.builder(
-                          padding: EdgeInsets.zero,
-                          itemCount: articles.length,
-                          itemBuilder: (context, index) {
-                            return NewsItem(article: articles[index]);
-                          });
-                    }),
-          )
+                  );
+                } else {
+                  return NewsItem(article: articles[index]);
+                }
+              },
+              itemCount: articles.length < maxResults
+                  ? articles.length + 1
+                  : articles.length,
+            ))
         ],
       ),
     );
+  }
+
+  void search() async {
+    try {
+      var response = await ApiManager.searchForNews(
+        searchController.text,
+        currentPage,
+      );
+      articles.addAll(response.articles ?? []);
+      maxResults = response.totalResults ?? 0;
+      currentPage++;
+    } catch (e) {
+      errorMessage = e.toString();
+    }
+    setState(() {});
   }
 }

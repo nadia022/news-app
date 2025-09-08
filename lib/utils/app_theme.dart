@@ -17,6 +17,7 @@ class AppTheme {
         headlineMedium: AppStyles.medium24White,
         titleMedium: AppStyles.medium14White,
         titleLarge: AppStyles.bold16White,
+        labelMedium: AppStyles.medium20White,
         bodyMedium: AppStyles.medium14black),
     inputDecorationTheme: InputDecorationTheme(
       prefixIconColor: AppColors.white,
@@ -58,6 +59,7 @@ class AppTheme {
         bodyMedium: AppStyles.medium14White,
         headlineMedium: AppStyles.medium24Black,
         titleMedium: AppStyles.medium14black,
+        labelMedium: AppStyles.medium20Black,
         titleLarge: AppStyles.bold16Black),
     inputDecorationTheme: InputDecorationTheme(
       prefixIconColor: AppColors.black,

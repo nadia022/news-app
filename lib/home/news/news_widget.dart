@@ -16,7 +16,9 @@ class _NewsWidgetState extends State<NewsWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: ApiManager.getNews(widget.source.id ?? ""),
+        future: ApiManager.getNews(
+          widget.source.id ?? "",
+        ),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());

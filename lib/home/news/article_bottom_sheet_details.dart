@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/model/NewsResponse.dart';
 import 'package:news_app/utils/app_colors.dart';
+import 'package:news_app/utils/app_styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ArticleBottomSheetDetails extends StatelessWidget {
@@ -49,7 +50,10 @@ class ArticleBottomSheetDetails extends StatelessWidget {
             },
             style: FilledButton.styleFrom(
                 fixedSize: Size(width * 0.95, height * 0.07)),
-            child: Text("View Full Article"),
+            child: Text(
+              "View Full Article",
+              // style: AppStyles.bold16Black,
+            ),
           ),
           SizedBox(
             height: height * 0.016,
