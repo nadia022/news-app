@@ -4,8 +4,9 @@ import 'package:news_app/utils/app_styles.dart';
 
 class ThemeOrLocalWidget extends StatelessWidget {
   String title;
+  Function ThemeOrLocalFunction;
 
-  ThemeOrLocalWidget({required this.title});
+  ThemeOrLocalWidget({required this.title, required this.ThemeOrLocalFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +23,24 @@ class ThemeOrLocalWidget extends StatelessWidget {
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: AppColors.white)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: AppStyles.medium20White,
-          ),
-          Icon(
-            Icons.arrow_drop_down_rounded,
-            size: 40,
-            color: AppColors.white,
-          )
-        ],
+      child: InkWell(
+        onTap: () {
+          ThemeOrLocalFunction();
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: AppStyles.medium20White,
+            ),
+            Icon(
+              Icons.arrow_drop_down_rounded,
+              size: 40,
+              color: AppColors.white,
+            ),
+          ],
+        ),
       ),
     );
   }

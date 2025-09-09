@@ -16,6 +16,8 @@ class AppStyles {
       fontSize: 14, color: AppColors.black, fontWeight: FontWeight.w600);
   static TextStyle medium20White = TextStyle(
       fontSize: 20, color: AppColors.white, fontWeight: FontWeight.w600);
+  static TextStyle medium20Blue = TextStyle(
+      fontSize: 20, color: AppColors.blue, fontWeight: FontWeight.w600);
   static TextStyle medium24White = TextStyle(
       fontSize: 24, color: AppColors.white, fontWeight: FontWeight.w600);
   static TextStyle medium24Black = TextStyle(

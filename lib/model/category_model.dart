@@ -2,40 +2,53 @@ import 'package:news_app/utils/app_assets.dart';
 
 class CategoryModel {
   String id;
-  String imagePath;
+  String lightImagePath;
+  String darkImagePath;
+
   String catogryName;
+
   CategoryModel(
-      {required this.id, required this.imagePath, required this.catogryName});
+      {required this.id,
+      required this.lightImagePath,
+      required this.catogryName,
+      required this.darkImagePath});
 
   static List<CategoryModel> getCategories() {
     return [
       CategoryModel(
           id: "general",
-          imagePath: AppAssets.generalImageLight,
+          lightImagePath: AppAssets.generalImageLight,
+          darkImagePath: AppAssets.generalImageDark,
           catogryName: "General"),
       CategoryModel(
           id: "business",
-          imagePath: AppAssets.businessImageLight,
+          lightImagePath: AppAssets.businessImageLight,
+          darkImagePath: AppAssets.businessImageDark,
           catogryName: "Business"),
       CategoryModel(
           id: "sports",
-          imagePath: AppAssets.sportsImageLight,
+          lightImagePath: AppAssets.sportsImageLight,
+          darkImagePath: AppAssets.sportsImageDark,
           catogryName: "Sports"),
       CategoryModel(
           id: "health",
-          imagePath: AppAssets.healthImageLight,
+          lightImagePath: AppAssets.healthImageLight,
+          darkImagePath: AppAssets.healthImageDark,
           catogryName: "Health"),
       CategoryModel(
           id: "entertainment",
-          imagePath: AppAssets.entertainmentImageLight,
+          lightImagePath: AppAssets.entertainmentImageLight,
+          darkImagePath: AppAssets.entertainmentImageDark,
           catogryName: "Entertainment"),
       CategoryModel(
           id: "technology",
-          imagePath: AppAssets.technologyImageLight,
+          lightImagePath: AppAssets.technologyImageLight,
+          darkImagePath: AppAssets.technologyImageDark,
           catogryName: "Technology"),
       CategoryModel(
           id: "science",
-          imagePath: AppAssets.scienceImageLight,
+          lightImagePath: AppAssets.scienceImageLight,
+          darkImagePath: AppAssets.scienceImageDark,
           catogryName: "Science"),
     ];
   }

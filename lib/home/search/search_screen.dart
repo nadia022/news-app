@@ -5,6 +5,7 @@ import 'package:news_app/home/news/news_item.dart';
 import 'package:news_app/model/NewsResponse.dart';
 import 'package:news_app/utils/app_colors.dart';
 import 'package:news_app/utils/app_styles.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchScreen extends StatefulWidget {
   static const String routeName = "searchScreen";
@@ -40,6 +41,8 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    var appLocalization = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: Column(
         children: [
@@ -58,7 +61,7 @@ class _SearchScreenState extends State<SearchScreen> {
               },
               controller: searchController,
               decoration: InputDecoration(
-                  hintText: "Search",
+                  hintText: appLocalization.search,
                   prefixIcon: Icon(Icons.search),
                   suffixIcon: InkWell(
                       onTap: () {

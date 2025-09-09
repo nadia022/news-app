@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/category_model.dart';
+import 'package:news_app/providers/theme_provider.dart';
 import 'package:news_app/utils/app_colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class Categories extends StatelessWidget {
   List<CategoryModel> catogeries = CategoryModel.getCategories();
@@ -10,6 +13,8 @@ class Categories extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    var appLocalization = AppLocalizations.of(context)!;
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: width * 0.03),
@@ -17,7 +22,7 @@ class Categories extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            "Good Morning\nHere is Some News For You",
+            "${appLocalization.good_morning}\n${appLocalization.here_is_some_news_for_you}",
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           SizedBox(
@@ -40,7 +45,11 @@ class Categories extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(16),
                         child: Image.asset(
-                          catogeries[index].imagePath,
+                          fit: BoxFit.cover,
+                          cacheWidth: 400,
+                          themeProvider.appTheme == ThemeMode.light
+                              ? catogeries[index].lightImagePath
+                              : catogeries[index].darkImagePath,
                         ),
                       ),
                       InkWell(
@@ -62,7 +71,7 @@ class Categories extends StatelessWidget {
                                 width: width * 0.02,
                               ),
                               Text(
-                                "View All",
+                                appLocalization.view_all,
                                 style:
                                     Theme.of(context).textTheme.headlineMedium,
                               ),

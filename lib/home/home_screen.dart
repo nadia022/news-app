@@ -5,6 +5,7 @@ import 'package:news_app/home/drawer/drawer_widget.dart';
 import 'package:news_app/home/search/search_screen.dart';
 import 'package:news_app/model/category_model.dart';
 import 'package:news_app/utils/app_colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'homeScreen';
@@ -18,11 +19,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    var appLocalization = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          selectedCategory == null ? "Home" : selectedCategory!.catogryName,
+          selectedCategory == null
+              ? appLocalization.home
+              : selectedCategory!.catogryName,
         ),
         centerTitle: true,
         actions: [

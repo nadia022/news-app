@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/model/NewsResponse.dart';
+import 'package:news_app/providers/theme_provider.dart';
 import 'package:news_app/utils/app_colors.dart';
 import 'package:news_app/utils/app_styles.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ArticleBottomSheetDetails extends StatelessWidget {
   Articles articles;
@@ -14,6 +17,8 @@ class ArticleBottomSheetDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    var appLocalization = AppLocalizations.of(context)!;
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -51,8 +56,10 @@ class ArticleBottomSheetDetails extends StatelessWidget {
             style: FilledButton.styleFrom(
                 fixedSize: Size(width * 0.95, height * 0.07)),
             child: Text(
-              "View Full Article",
-              // style: AppStyles.bold16Black,
+              appLocalization.view_full_article,
+              style: themeProvider.appTheme == ThemeMode.light
+                  ? AppStyles.bold16Black
+                  : AppStyles.bold16White,
             ),
           ),
           SizedBox(
