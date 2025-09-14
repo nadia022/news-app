@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/home/news/news_item.dart';
+import 'package:news_app/model/NewsResponse.dart';
 import 'package:news_app/model/SourceResponse.dart';
+import 'package:news_app/utils/app_colors.dart';
 
 class NewsWidget extends StatefulWidget {
   Source source;
@@ -13,15 +15,28 @@ class NewsWidget extends StatefulWidget {
 }
 
 class _NewsWidgetState extends State<NewsWidget> {
+  int currentPage = 1;
+  int maxResult = 0;
+  List<Articles> newsList = [];
+  ScrollController scrollController = ScrollController();
+  @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   // scrollController.addListener((){
+  //   //   if(scrollController.position.pixels==scrollController.position.maxScrollExtent){}
+  //   // })
+  // }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: ApiManager.getNews(
-          widget.source.id ?? "",
-        ),
+        future: ApiManager.getNews(widget.source.id ?? ""),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+                child: CircularProgressIndicator(
+              color: AppColors.grey,
+            ));
           } else if (snapshot.hasError) {
             return Center(
               child: Column(
@@ -52,12 +67,22 @@ class _NewsWidgetState extends State<NewsWidget> {
               ),
             );
           }
-          var newsList = snapshot.data!.articles ?? [];
+          newsList = snapshot.data!.articles ?? [];
           return ListView.builder(
               itemCount: newsList.length,
               itemBuilder: (context, index) {
+                if (index == newsList.length) {
+                  return Center(
+                      child: CircularProgressIndicator(
+                    color: AppColors.grey,
+                  ));
+                }
                 return NewsItem(article: newsList[index]);
               });
         });
   }
 }
+
+/**
+  maxresult =2000  pagesize=10    page 
+ */

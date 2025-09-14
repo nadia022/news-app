@@ -25,6 +25,7 @@ class ApiManager {
     Uri url = Uri.https(ApiConstants.baseUrl, Endpoints.newsApi, {
       'apiKey': ApiConstants.apiKey,
       'sources': sourceId,
+      'pageSize': "10",
     });
     try {
       var response = await http.get(url);
