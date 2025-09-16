@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
-import 'package:news_app/home/category_details/source_tab_widget.dart';
+import 'package:news_app/home/sources/source_tab_widget.dart';
 import 'package:news_app/model/category_model.dart';
 
-class CategoryDetails extends StatefulWidget {
+class Sources extends StatefulWidget {
   CategoryModel category;
-  CategoryDetails({required this.category});
+  Sources({required this.category});
 
   @override
-  State<CategoryDetails> createState() => _CategoryDetailsState();
+  State<Sources> createState() => _SourcesState();
 }
 
-class _CategoryDetailsState extends State<CategoryDetails> {
+class _SourcesState extends State<Sources> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

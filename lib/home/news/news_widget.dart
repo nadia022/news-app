@@ -15,22 +15,15 @@ class NewsWidget extends StatefulWidget {
 }
 
 class _NewsWidgetState extends State<NewsWidget> {
-  int currentPage = 1;
-  int maxResult = 0;
   List<Articles> newsList = [];
+
   ScrollController scrollController = ScrollController();
+
   @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   // scrollController.addListener((){
-  //   //   if(scrollController.position.pixels==scrollController.position.maxScrollExtent){}
-  //   // })
-  // }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: ApiManager.getNews(widget.source.id ?? ""),
+        future: ApiManager.getNewsBySourceId(widget.source.id ?? ""),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -44,7 +37,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                   Text("something went wrong."),
                   ElevatedButton(
                       onPressed: () {
-                        ApiManager.getNews(widget.source.id ?? "");
+                        ApiManager.getNewsBySourceId(widget.source.id ?? "");
                         setState(() {});
                       },
                       child: Text("try again")),
@@ -59,7 +52,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                   Text(snapshot.data!.message ?? ""),
                   ElevatedButton(
                       onPressed: () {
-                        ApiManager.getNews(widget.source.id ?? "");
+                        ApiManager.getNewsBySourceId(widget.source.id ?? "");
                         setState(() {});
                       },
                       child: Text("try again")),
@@ -71,12 +64,6 @@ class _NewsWidgetState extends State<NewsWidget> {
           return ListView.builder(
               itemCount: newsList.length,
               itemBuilder: (context, index) {
-                if (index == newsList.length) {
-                  return Center(
-                      child: CircularProgressIndicator(
-                    color: AppColors.grey,
-                  ));
-                }
                 return NewsItem(article: newsList[index]);
               });
         });

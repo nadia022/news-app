@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/home/categories/categories.dart';
-import 'package:news_app/home/category_details/category_details.dart';
+import 'package:news_app/home/sources/sources.dart';
 import 'package:news_app/home/drawer/drawer_widget.dart';
 import 'package:news_app/home/search/search_screen.dart';
 import 'package:news_app/model/category_model.dart';
@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ? Categories(
               onViewAllTap: getCategoryDetails,
             )
-          : CategoryDetails(
+          : Sources(
               category: selectedCategory!,
             ),
     );

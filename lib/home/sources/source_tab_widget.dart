@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/home/category_details/source_name_widget.dart';
+import 'package:news_app/home/sources/source_name_widget.dart';
 import 'package:news_app/home/news/news_widget.dart';
 import 'package:news_app/model/SourceResponse.dart';
 import 'package:news_app/utils/app_colors.dart';
