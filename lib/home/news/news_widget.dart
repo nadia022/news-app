@@ -1,75 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/api/api_manager.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/home/news/cubit/news_states.dart';
+import 'package:news_app/home/news/cubit/news_view_model.dart';
 import 'package:news_app/home/news/news_item.dart';
-import 'package:news_app/model/NewsResponse.dart';
 import 'package:news_app/model/SourceResponse.dart';
 import 'package:news_app/utils/app_colors.dart';
+import 'package:news_app/utils/app_styles.dart';
 
-class NewsWidget extends StatefulWidget {
+class NewsWidget extends StatelessWidget {
   Source source;
 
-  NewsWidget({required this.source});
+  NewsWidget({required this.source, super.key});
 
-  @override
-  State<NewsWidget> createState() => _NewsWidgetState();
-}
-
-class _NewsWidgetState extends State<NewsWidget> {
-  List<Articles> newsList = [];
-
-  ScrollController scrollController = ScrollController();
-
-  @override
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: ApiManager.getNewsBySourceId(widget.source.id ?? ""),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-                child: CircularProgressIndicator(
-              color: AppColors.grey,
-            ));
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Column(
-                children: [
-                  Text("something went wrong."),
-                  ElevatedButton(
-                      onPressed: () {
-                        ApiManager.getNewsBySourceId(widget.source.id ?? "");
-                        setState(() {});
-                      },
-                      child: Text("try again")),
-                ],
-              ),
-            );
-          }
-          if (snapshot.data!.status != "ok") {
-            return Center(
-              child: Column(
-                children: [
-                  Text(snapshot.data!.message ?? ""),
-                  ElevatedButton(
-                      onPressed: () {
-                        ApiManager.getNewsBySourceId(widget.source.id ?? "");
-                        setState(() {});
-                      },
-                      child: Text("try again")),
-                ],
-              ),
-            );
-          }
-          newsList = snapshot.data!.articles ?? [];
+    return BlocBuilder<NewsViewModel, NewsState>(
+      builder: (context, state) {
+        if (state is SuccessNewsState) {
           return ListView.builder(
-              itemCount: newsList.length,
-              itemBuilder: (context, index) {
-                return NewsItem(article: newsList[index]);
-              });
-        });
+            itemCount: state.articles.length,
+            itemBuilder: (context, index) {
+              return NewsItem(article: state.articles[index]);
+            },
+          );
+        } else if (state is ErrorNewsState) {
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(state.errorMessaage, style: AppStyles.bold16Red),
+                ElevatedButton(
+                  onPressed: () {
+                    context
+                        .read<NewsViewModel>()
+                        .getNewsBySourceId(source.id ?? "");
+                  },
+                  child: const Text("try again"),
+                ),
+              ],
+            ),
+          );
+        }
+        return Center(
+          child: CircularProgressIndicator(color: AppColors.grey),
+        );
+      },
+    );
   }
 }
-
-/**
-  maxresult =2000  pagesize=10    page 
- */
