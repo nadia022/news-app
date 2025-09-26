@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/api/api_manager.dart';
-import 'package:news_app/home/sources/cubit/souce_view_model.dart';
-import 'package:news_app/home/sources/cubit/sources_states.dart';
-import 'package:news_app/home/sources/source_tab_widget.dart';
+import 'package:news_app/cubits/source_cubit/souce_view_model.dart';
+import 'package:news_app/cubits/source_cubit/sources_states.dart';
+import 'package:news_app/ui/home/sources/source_tab_widget.dart';
 import 'package:news_app/model/category_model.dart';
-import 'package:news_app/utils/app_colors.dart';
-import 'package:news_app/utils/app_styles.dart';
+import 'package:news_app/ui/utils/app_colors.dart';
+import 'package:news_app/ui/utils/app_styles.dart';
 
 class Sources extends StatefulWidget {
   CategoryModel category;

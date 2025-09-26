@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/home/news/article_bottom_sheet_details.dart';
+import 'package:news_app/ui/home/news/article_bottom_sheet_details.dart';
 import 'package:news_app/model/NewsResponse.dart';
-import 'package:news_app/utils/app_colors.dart';
-import 'package:news_app/utils/app_styles.dart';
+import 'package:news_app/ui/utils/app_colors.dart';
+import 'package:news_app/ui/utils/app_styles.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class NewsItem extends StatelessWidget {

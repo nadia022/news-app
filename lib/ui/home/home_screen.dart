@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/home/categories/categories.dart';
-import 'package:news_app/home/sources/sources.dart';
-import 'package:news_app/home/drawer/drawer_widget.dart';
-import 'package:news_app/home/search/search_screen.dart';
+import 'package:news_app/ui/home/categories/categories.dart';
+import 'package:news_app/ui/home/sources/sources.dart';
+import 'package:news_app/ui/home/drawer/drawer_widget.dart';
+import 'package:news_app/ui/home/search/search_screen.dart';
 import 'package:news_app/model/category_model.dart';
-import 'package:news_app/utils/app_colors.dart';
+import 'package:news_app/ui/utils/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {

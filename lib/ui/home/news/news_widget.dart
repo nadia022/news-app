@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/home/news/cubit/news_states.dart';
-import 'package:news_app/home/news/cubit/news_view_model.dart';
-import 'package:news_app/home/news/news_item.dart';
+import 'package:news_app/cubits/news_cubit/news_states.dart';
+import 'package:news_app/cubits/news_cubit/news_view_model.dart';
+import 'package:news_app/ui/home/news/news_item.dart';
 import 'package:news_app/model/SourceResponse.dart';
-import 'package:news_app/utils/app_colors.dart';
-import 'package:news_app/utils/app_styles.dart';
+import 'package:news_app/ui/utils/app_colors.dart';
+import 'package:news_app/ui/utils/app_styles.dart';
 
 class NewsWidget extends StatelessWidget {
   Source source;
@@ -17,12 +17,19 @@ class NewsWidget extends StatelessWidget {
     return BlocBuilder<NewsViewModel, NewsState>(
       builder: (context, state) {
         if (state is SuccessNewsState) {
-          return ListView.builder(
-            itemCount: state.articles.length,
-            itemBuilder: (context, index) {
-              return NewsItem(article: state.articles[index]);
-            },
-          );
+          return state.articles.isEmpty
+              ? Center(
+                  child: Text(
+                    "Data not found...!",
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: state.articles.length,
+                  itemBuilder: (context, index) {
+                    return NewsItem(article: state.articles[index]);
+                  },
+                );
         } else if (state is ErrorNewsState) {
           return Center(
             child: Column(

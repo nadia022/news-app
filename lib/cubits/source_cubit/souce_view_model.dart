@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/api/api_manager.dart';
-import 'package:news_app/home/sources/cubit/sources_states.dart';
+import 'package:news_app/cubits/source_cubit/sources_states.dart';
 
 class SourceViewModel extends Cubit<SourcesState> {
   SourceViewModel() : super(LoadingSourceState());

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/home/news/cubit/news_states.dart';
-import 'package:news_app/home/news/cubit/news_view_model.dart';
-import 'package:news_app/home/sources/source_name_widget.dart';
-import 'package:news_app/home/news/news_widget.dart';
+import 'package:news_app/cubits/news_cubit/news_states.dart';
+import 'package:news_app/cubits/news_cubit/news_view_model.dart';
+import 'package:news_app/ui/home/sources/source_name_widget.dart';
+import 'package:news_app/ui/home/news/news_widget.dart';
 import 'package:news_app/model/SourceResponse.dart';
 
 class SourceTabWidget extends StatefulWidget {

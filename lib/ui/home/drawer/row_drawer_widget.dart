@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/utils/app_styles.dart';
+import 'package:news_app/ui/utils/app_styles.dart';
 
 class RowDrawerWidget extends StatelessWidget {
   String iconPath;

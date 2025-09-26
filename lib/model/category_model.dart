@@ -1,4 +1,4 @@
-import 'package:news_app/utils/app_assets.dart';
+import 'package:news_app/ui/utils/app_assets.dart';
 
 class CategoryModel {
   String id;
